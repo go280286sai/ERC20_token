@@ -1,12 +1,11 @@
 import {artifacts, ethers} from "hardhat";
 import fs from "fs";
 import * as path from "path";
-const nameContract = "Saing";
 async function main() {
-  const ContractFactory = await ethers.getContractFactory(nameContract);
+  const ContractFactory = await ethers.getContractFactory("Saing");
 
   // TODO: Set addresses for the contract arguments below
-  const instance = await ContractFactory.deploy(nameContract, "SAI", 1000000, 10000, 10);
+  const instance = await ContractFactory.deploy("Saing", "SAI", 1000000, 10000, 10);
   await instance.waitForDeployment();
   const getAddress = await instance.getAddress();
   saveFrontendFiles(getAddress);
@@ -24,7 +23,7 @@ function saveFrontendFiles(token: string) {
       JSON.stringify({ Token: token }, undefined, 2)
   );
 
-  const TokenArtifact = artifacts.readArtifactSync(nameContract);
+  const TokenArtifact = artifacts.readArtifactSync("Saing");
 
   fs.writeFileSync(
       path.join(contractsDir, "Token.json"),

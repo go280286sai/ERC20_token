@@ -1,12 +1,6 @@
-
-
-
-
 <template>
   <header>
-
   </header>
-
   <main>
     <Menu />
     <router-view />

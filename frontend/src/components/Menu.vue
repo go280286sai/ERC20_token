@@ -1,7 +1,5 @@
 <script setup>
-
 </script>
-
 <template>
 <div>
   <div className="container p-4">
@@ -9,10 +7,9 @@
       <div className="col-12">
         <ul className="menu">
           <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/test">Test</router-link></li>
-          <li><router-link to="/dev">ContractDev</router-link></li>
-          <li><router-link to="/server">PayServer</router-link></li>
           <li><router-link to="/client">PayClient</router-link></li>
+          <li><router-link to="/server">PayServer</router-link></li>
+          <li><router-link to="/test">Test</router-link></li>
         </ul>
       </div>
     </div>
@@ -46,5 +43,21 @@ export default {
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  border-radius: 5px;
+  box-shadow: #fd9d0d 0 0 10px;
+}
+.menu li {
+  float: left;
+  list-style-type: none;
+}
+.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.menu li a:hover {
+  background-color: #116aad;
 }
 </style>
