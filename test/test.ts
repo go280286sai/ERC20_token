@@ -144,4 +144,9 @@ describe("Saing", function () {
         expect(await instance.balanceOf(owner.address)).to.equal(500000);
         expect(await instance.balanceOf(user2.address)).to.equal(500000);
     });
+    it("Test get balance", async function () {
+        const {instance, owner, user1, user2, user3} = await loadFixture(deployTokenFixture);
+        await instance.connect(owner).fundContract({value: 10000});
+        expect(await instance.getBalance()).to.equal(10000);
+    });
 });

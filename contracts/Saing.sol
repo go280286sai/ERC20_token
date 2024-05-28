@@ -116,4 +116,9 @@ contract Saing is ERC20, ERC20Permit, ERC20Votes, Ownable {
     function getTokenPrice() public view returns (uint256) {
         return minTokenPrice;
     }
+
+    function getBalance() public view onlyOwner returns (uint256) {
+    return address(this).balance;
+}
+
 }

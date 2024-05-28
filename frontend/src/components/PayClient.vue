@@ -325,8 +325,7 @@ export default {
     ,
     async _tokens() {
       return await contract.methods.balanceOf(this.state.selectedAddress).call();
-    }
-    ,
+    },
     predictPrice() {
       this.state.getPredictPrice = parseInt(this.state.priceToken) * parseInt(this.state.countTokens);
     }
