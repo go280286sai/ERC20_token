@@ -14,13 +14,13 @@
             Your address: <strong class="p_tag">{{ this.state.selectedAddress }}</strong>
           </p>
           <p>
-            Your balance: <strong class="p_tag" >{{ this.state.balance }}</strong>
+            Your balance: <strong class="p_tag">{{ this.state.balance }}</strong>
           </p>
           <p>
-            Your token: <strong class="p_tag" >{{ this.state.tokens }}</strong>
+            Your token: <strong class="p_tag">{{ this.state.tokens }}</strong>
           </p>
           <p>
-            Current price: <strong  class="p_tag">{{ this.state.priceToken }}</strong>
+            Current price: <strong class="p_tag">{{ this.state.priceToken }}</strong>
           </p>
           <p>
             Token name: <strong class="p_tag">{{ this.state.name }}</strong>
@@ -35,7 +35,6 @@
         <div class="btn btn-primary btn_connect" @click="_connectWallet">Connect Wallet</div>
       </div>
       <hr/>
-
     </div>
   </div>
 </template>
@@ -43,11 +42,10 @@
 
 import Web3 from "web3";
 import abi from "./../contracts/Token.json";
-import {Contract} from 'web3-eth-contract';
 import contractAddress from "./../contracts/contract-address.json";
-import axios from "axios";
+import {URL_CONTRACT} from "../setting/config.js"
 
-const url = "http://127.0.0.1:8545";
+const url = URL_CONTRACT;
 const web3 = new Web3(url);
 const contract = new web3.eth.Contract(abi.abi, contractAddress.Token);
 
@@ -97,18 +95,18 @@ export default {
       return web3.utils.fromWei(balance, 'ether') + ' ETH';
     },
     async _price() {
-     return await contract.methods.getTokenPrice().call();
+      return await contract.methods.getTokenPrice().call();
     },
     async _nameToken() {
-     return await contract.methods.name().call();
+      return await contract.methods.name().call();
     },
     async _symbol() {
       return await contract.methods.symbol().call();
     },
-    async _tokenTotal(){
+    async _tokenTotal() {
       return await contract.methods.totalSupply().call();
     },
-    async _tokens(){
+    async _tokens() {
       return await contract.methods.balanceOf(this.state.selectedAddress).call();
     }
   }

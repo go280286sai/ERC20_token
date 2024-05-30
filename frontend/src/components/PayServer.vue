@@ -47,12 +47,12 @@
             <input type="button" value="Add tokens" class="btn btn-success btn_pay" @click="_addTokens">
           </div>
           <br><br>
-        <div>
-          <label for="burn">Burn count token</label> <br>
-          <input type="number" class="field mb-2" id="burn">
-          <br>
-          <input type="button" value="Burn tokens" class="btn btn-success btn_pay" @click="_burnTokens">
-        </div>
+          <div>
+            <label for="burn">Burn count token</label> <br>
+            <input type="number" class="field mb-2" id="burn">
+            <br>
+            <input type="button" value="Burn tokens" class="btn btn-success btn_pay" @click="_burnTokens">
+          </div>
           <br><br>
           <div>
             <label for="fund">Fund contract</label> <br>
@@ -72,7 +72,7 @@
             <label for="w_all">Withdraw all</label> <br>
             <input type="button" value="Withdraw all" class="btn btn-success btn_pay" @click="_withdrawAll">
           </div>
-      </div>
+        </div>
         <div class="block_pay">
           <h3 class="mb-3">Transfer token</h3>
           <table>
@@ -104,9 +104,10 @@ import Web3 from "web3";
 import abi from "./../contracts/Token.json";
 import {Contract} from 'web3-eth-contract';
 import contractAddress from "./../contracts/contract-address.json";
-import axios from "axios";
+import {URL_CONTRACT} from "../setting/config.js"
 
-const url = "http://127.0.0.1:8545";
+
+const url = URL_CONTRACT;
 const web3 = new Web3(url);
 const contract = new web3.eth.Contract(abi.abi, contractAddress.Token);
 
@@ -279,7 +280,7 @@ export default {
         const contract = new Contract(abi.abi, address, web3);
         const user = web3.utils.toChecksumAddress(this.state.selectedAddress.toString());
         await contract.methods.withdrawPart(countTokens)
-            .send({ from: user})
+            .send({from: user})
             .then(async (data) => {
               await this._transactionSuccess(data.status.toString(), data.transactionHash.toString());
               await this._initialize();
@@ -306,7 +307,7 @@ export default {
         const contract = new Contract(abi.abi, address, web3);
         const user = web3.utils.toChecksumAddress(this.state.selectedAddress.toString());
         await contract.methods.withdraftAll()
-            .send({ from: user})
+            .send({from: user})
             .then(async (data) => {
               await this._transactionSuccess(data.status.toString(), data.transactionHash.toString());
               await this._initialize();
@@ -393,7 +394,7 @@ export default {
     async _totalSupply() {
       return await contract.methods.totalSupply().call();
     },
-    async _balanceContract(){
+    async _balanceContract() {
       return await contract.methods.getBalance().call();
     }
   }

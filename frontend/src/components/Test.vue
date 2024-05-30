@@ -8,9 +8,6 @@
     <div className="row">
       <div className="col-12">
         <h1>Welcome to the Dapp!</h1>
-        <label for="price" >Price</label> <br/>
-        <input type="number" id="price" /> <br/>
-        <button>Pay</button>
       </div>
     </div>
 

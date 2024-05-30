@@ -32,12 +32,12 @@
         <p>
           Token total: <strong class="p_tag">{{ this.state.totalSupply }}</strong>
         </p>
-<select v-model="selected" class="field">
-  <option disabled value="">Please select one</option>
-  <option v-for="option in options" :key="option.value" :value="option.value">
-    {{ option.text }}
-  </option>
-</select>
+        <select v-model="selected" class="field">
+          <option disabled value="">Please select one</option>
+          <option v-for="option in options" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
 
         <div v-if="selected === 'Pay'">
           <div class="block_pay">
@@ -127,9 +127,9 @@ import Web3 from "web3";
 import abi from "./../contracts/Token.json";
 import {Contract} from 'web3-eth-contract';
 import contractAddress from "./../contracts/contract-address.json";
-import axios from "axios";
+import {URL_CONTRACT} from "../setting/config.js"
 
-const url = "http://127.0.0.1:8545";
+const url = URL_CONTRACT;
 const web3 = new Web3(url);
 const contract = new web3.eth.Contract(abi.abi, contractAddress.Token);
 
@@ -157,9 +157,9 @@ export default {
       },
       selected: "",
       options: [
-        { value: 'Pay', text: 'Pay' },
-        { value: 'Sell', text: 'Sell' },
-        { value: 'Transfer', text: 'Transfer' }
+        {value: 'Pay', text: 'Pay'},
+        {value: 'Sell', text: 'Sell'},
+        {value: 'Transfer', text: 'Transfer'}
       ]
     };
   },
@@ -272,7 +272,7 @@ export default {
       const userAddress = document.getElementById('to').value;
       const user = web3.utils.toChecksumAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
       console.log(owner, user, countTokens)
-      await contract.methods.transferFrom(owner,user, countTokens)
+      await contract.methods.transferFrom(owner, user, countTokens)
           .send({from: owner})
           .then((data) => {
             this._transactionSuccess(data.status.toString(), data.transactionHash.toString());
